@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LOFeasy · 场内基金溢价率</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <p class="eyebrow">A 股场内 LOF 数据台</p>
+        <h1>溢价率排行榜</h1>
+        <p class="subtitle">价格与参考净值的距离，一眼看清。</p>
+      </div>
+      <button id="refresh" class="refresh">刷新数据</button>
+    </header>
+
+    <section class="summary" aria-label="数据摘要">
+      <div><span>基金数量</span><strong id="total">—</strong></div>
+      <div><span>数据更新时间</span><strong id="updated">—</strong></div>
+      <div><span>当前状态</span><strong id="status" class="status">连接中</strong></div>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar">
+        <label class="search">
+          <span>搜索</span>
+          <input id="search" type="search" placeholder="基金代码或名称" autocomplete="off">
+        </label>
+        <label>
+          <span>申购状态</span>
+          <select id="subscriptionStatus">
+            <option value="">全部状态</option>
+            <option value="purchasable">可申购（含限购）</option>
+            <option value="open">开放申购（不限购）</option>
+            <option value="limited">限购</option>
+            <option value="suspended">暂停申购</option>
+            <option value="closed">关闭</option>
+            <option value="unknown">状态未知</option>
+          </select>
+        </label>
+        <label>
+          <span>排序</span>
+          <select id="sortBy">
+            <option value="premiumRate">溢价率</option>
+            <option value="price">场内价格</option>
+            <option value="referenceNav">参考净值</option>
+            <option value="subscriptionStatus">申购状态</option>
+            <option value="subscriptionLimit">限购金额</option>
+            <option value="code">基金代码</option>
+            <option value="name">基金名称</option>
+            <option value="priceTime">价格时间</option>
+            <option value="navDate">净值日期</option>
+          </select>
+        </label>
+        <label>
+          <span>方向</span>
+          <select id="sortOrder">
+            <option value="desc">从高到低</option>
+            <option value="asc">从低到高</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>基金</th><th>场内价格</th><th>参考净值</th><th>溢价率</th><th>近一周</th><th>申购状态</th><th>申赎规则</th><th>数据时间</th><th>来源</th><th>状态</th>
+          </tr></thead>
+          <tbody id="rows"><tr><td colspan="10" class="empty">正在读取数据…</td></tr></tbody>
+        </table>
+      </div>
+
+      <footer class="pagination">
+        <span id="pageInfo">第 1 页</span>
+        <div><button id="previous">上一页</button><button id="next">下一页</button></div>
+      </footer>
+    </section>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
