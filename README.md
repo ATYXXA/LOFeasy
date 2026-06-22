@@ -32,8 +32,8 @@ npm start
 仓库已包含 `.github/workflows/pages.yml`。它会在推送到 `main`、手动运行，以及每小时第 7、37 分钟生成最新静态数据并部署 Pages。
 
 1. 在 GitHub 创建仓库并推送本项目到 `main` 分支。
-2. 打开仓库 `Settings → Pages`，将 `Source` 设为 `GitHub Actions`。
-3. 打开 `Actions`，手动运行一次 `Refresh data and deploy Pages`。
-4. 部署完成后访问 `https://<用户名>.github.io/<仓库名>/`。
+2. 打开仓库 `Actions`，运行一次 `Refresh data and deploy Pages`。工作流会自动启用 Pages。
+3. 新版 `Settings → Pages` 在首次部署前只显示 Jekyll/Static HTML 建议模板；无需选择这些模板，也可能看不到旧版的 Source 下拉框。
+4. 首次工作流成功后，Pages 页面会显示部署详情；访问 `https://<用户名>.github.io/<仓库名>/`。
 
 Pages 不运行 Node 服务。工作流会执行 `npm run export:static`，将前端和完整排行榜快照写入 `_site`；线上搜索、筛选、排序和分页由浏览器完成。定时任务使用 UTC，但这里每半小时都运行，不受时区影响。GitHub 的定时任务可能因平台繁忙而延迟，并不保证精确到分钟。
